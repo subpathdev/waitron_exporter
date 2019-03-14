@@ -1,0 +1,10 @@
+[Unit]
+Description=waitron exporter for Prometheus
+
+[Service]
+User=pi
+Type=simple
+ExecStart=/home/pi/goPkg/bin/waitron_exporter listen=:9999 waitron=http://localhost:8090
+
+[Install]
+WantedBy=multi-user.target
