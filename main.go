@@ -48,9 +48,9 @@ func metrics(w http.ResponseWriter, r *http.Request){
 	message += "# TYPE waitron_node_state gauge\n"
 	for i := 0; i < len(list); i++ {
 		if strings.EqualFold(string(requestWaitron("status/" + list[i])), "Installing") {
-			message += "waitron_node_state{node=" + list[i] + "} 1\n"
+			message += "waitron_node_state{host=\"" + list[i] + "\"} 1\n"
 		} else {
-			message += "waitron_node_state{node=" + list[i] + "} 0\n"
+			message += "waitron_node_state{host=\"" + list[i] + "\"} 0\n"
 		}
 	}
 	w.Write([]byte(message))
