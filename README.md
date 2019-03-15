@@ -3,11 +3,12 @@
 This is a tool, which can be used to export waitron metrics to [Prometheus](https://prometheus.io/)
 
 ## Dependencies
-- an running waitron instance
+- a running waitron instance
 
 ## Command line parameters
-| command | parameter |
+| command | description |
 | ------- | --------- |
+| help | print the help |
 | listen  | is the TCP network address |
 | waitron | is the url to the waitron server |
 
@@ -23,3 +24,13 @@ To install this exporter you have to build this with the following command:
 go build -o waitron\_exporter main.go
 ```
 To use the service file you have change the user and place it in /etc/systemd/system/.
+
+## Configuration example prometheus
+This show an example of the prometheus configuration of this exporter:
+```
+ - job_name: waitron
+    scrape_interval: 5s
+    metrics_path: /
+    static_configs:
+    - targets: ['localhost:9999']
+```
